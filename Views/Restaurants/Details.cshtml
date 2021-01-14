@@ -1,0 +1,143 @@
+﻿@model ETSUEats.Model.Restaurants
+
+@{
+    ViewData["Title"] = "ETSUEats";
+    var item = Model;
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Covid Policies
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string builtCovidPolicies = "";
+                var covidPolicy = item.Covid19.FirstOrDefault();
+                if (covidPolicy != null)
+                {
+                    string demarc = ", ";
+                    if (covidPolicy.TakeOut)
+                    {
+                        builtCovidPolicies += "takeout";
+                    }
+                    if (covidPolicy.LimitSeating)
+                    {
+                        if (builtCovidPolicies.Length != 0) builtCovidPolicies += demarc;
+                        builtCovidPolicies += "limited seating";
+                    }
+                    if (covidPolicy.IndoorDining)
+                    {
+                        if (builtCovidPolicies.Length != 0) builtCovidPolicies += demarc;
+                        builtCovidPolicies += "indoor dining";
+                    }
+                    if (covidPolicy.Curbside)
+                    {
+                        if (builtCovidPolicies.Length != 0) builtCovidPolicies += demarc;
+                        builtCovidPolicies += "curbside";
+                    }
+                }
+            }
+            @builtCovidPolicies
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cuisines)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cuisines)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Establishment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Establishment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)<br />
+            @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.StateCode) @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Locality)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Locality)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocalityVerbose)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LocalityVerbose)
+        </dd>
+        <dt class="col-sm-2">
+            Links
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Html.DisplayFor(model => model.MenuUrl)">Menu</a><br />
+            <a href="@Html.DisplayFor(model => model.Url)">Website</a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PriceRange)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PriceRange)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Timings)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timings)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AggregateRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AggregateRating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RatingText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RatingText)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityNavigation.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cuisine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cuisine.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
